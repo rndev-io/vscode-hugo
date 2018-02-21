@@ -1,0 +1,3 @@
+# vscode-hugo
+
+Coming soon ...
