@@ -1,3 +1,5 @@
 # vscode-hugo
 
-Coming soon ...
+## Commands
+
+## Configuration
