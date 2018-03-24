@@ -47,7 +47,7 @@
             },
             {
                 "command": "hugo.remoteVersion",
-                "title": "Hugo: get remote version"
+                "title": "Hugo: remote version"
             }
         ]
     },

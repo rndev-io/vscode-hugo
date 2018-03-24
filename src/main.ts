@@ -7,7 +7,6 @@ import * as fs from 'fs';
 const opn = require('opn');
 const request = require('request');
 
-let taskProvider: vscode.Disposable | undefined;
 let hugo: Hugo;
 
 
@@ -18,10 +17,14 @@ export function activate(context: vscode.ExtensionContext) {
 		return;
     }
     
-    console.log('Extension "Hugo" is active');
-
     hugo = new Hugo(workspaceRoot);
 
+    if(!hugo.isHugoFolder()) {
+        return;
+    }
+
+    console.log('"Hugo Helper" is active');
+    
     let version = vscode.commands.registerCommand('hugo.version', () => {
         hugo.version().then((v) => {
             vscode.window.showInformationMessage("Local version: " + v);
@@ -40,6 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
                 let fullFileName = path.join(sectionName, fileName.replace(/ /g, '_') + '.md');
 
                 hugo.new(fullFileName).then((path) => {
+                    // commands.executeCommand<void>('vscode.open', right, opts);
                     vscode.window.showTextDocument(vscode.Uri.parse('file://' + path));
                 });
             });
@@ -71,10 +75,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate(): void {
-	if (taskProvider) {
-		taskProvider.dispose();
-    }
-    
     hugo.stopServer();
 }
 
@@ -211,27 +211,27 @@ function exists(file: string): Promise<boolean> {
 	});
 }
 
-// function readdir(path: string): Promise<string[]> {
-//     return new Promise<string[]>((resolve, reject) => {
-//         fs.readdir(path, (error, files) => {
-//             if (error) {
-//                 reject({error, files});
-//             }
-//             resolve(files)
-//         });
-//     });
-// };
+function readdir(path: string): Promise<string[]> {
+    return new Promise<string[]>((resolve, reject) => {
+        fs.readdir(path, (error, files) => {
+            if (error) {
+                reject({error, files});
+            }
+            resolve(files)
+        });
+    });
+};
 
-// function lstat(path: string): Promise<fs.Stats> {
-//     return new Promise<fs.Stats>((resolve, reject) => {
-//         fs.lstat(path, (error, stat) => {
-//             if (error) {
-//                 reject({error, stat});
-//             }
-//             resolve(stat)
-//         });
-//     });
-// }
+function lstat(path: string): Promise<fs.Stats> {
+    return new Promise<fs.Stats>((resolve, reject) => {
+        fs.lstat(path, (error, stat) => {
+            if (error) {
+                reject({error, stat});
+            }
+            resolve(stat)
+        });
+    });
+}
 
 function walk(dirPath: string): string[]{
     let result: string[] = [];
