@@ -211,28 +211,6 @@ function exists(file: string): Promise<boolean> {
 	});
 }
 
-function readdir(path: string): Promise<string[]> {
-    return new Promise<string[]>((resolve, reject) => {
-        fs.readdir(path, (error, files) => {
-            if (error) {
-                reject({error, files});
-            }
-            resolve(files)
-        });
-    });
-};
-
-function lstat(path: string): Promise<fs.Stats> {
-    return new Promise<fs.Stats>((resolve, reject) => {
-        fs.lstat(path, (error, stat) => {
-            if (error) {
-                reject({error, stat});
-            }
-            resolve(stat)
-        });
-    });
-}
-
 function walk(dirPath: string): string[]{
     let result: string[] = [];
 
