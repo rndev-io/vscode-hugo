@@ -1,5 +1,7 @@
 # vscode-hugo
 
+![downloads](https://img.shields.io/vscode-marketplace/d/rusnasonov.vscode-hugo.svg)
+
 Some useful commands for [Hugo](http://gohugo.io).
 
 ## Commands from command pallet (cmd+shift+p)
