@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
                 if (!fileName){
                     return;
                 }
-                let fullFileName = path.join(sectionName, fileName.replace(/ /g, '_') + '.md');
+                let fullFileName = path.join(sectionName, fileName.replace(/ /g, '-') + '.md');
 
                 hugo.new(fullFileName).then((path) => {
                     // commands.executeCommand<void>('vscode.open', right, opts);
