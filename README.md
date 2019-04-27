@@ -2,15 +2,30 @@
 
 ![downloads](https://img.shields.io/vscode-marketplace/d/rusnasonov.vscode-hugo.svg)
 
-Some useful commands for [Hugo](http://gohugo.io).
+Integrate [Hugo](http://gohugo.io) with [VSCode](https://code.visualstudio.com).
 
-## Commands from command pallet (cmd+shift+p)
+## Tasks
+
+[VSCode Task](https://code.visualstudio.com/Docs/editor/tasks#_processing-task-output-with-problem-matchers) for Hugo.
+
+### Build site
+
+Run `hugo` shell command. In VSCode run `Command Pallete` -> `Run tasks` -> `Build site`.
+
+Or press <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>b</kbd> (<kbd>control</kbd> + <kbd>shift</kbd> + <kbd>b</kbd> for Windows and Linux) for select task in Build menu. If you setup `Default build task` command will be run without showing menu.
+
+### Serve site
+
+Run `hugo server` shell comamnd. In VSCode run `Command Pallete` -> `Run tasks` -> `Serve site`.
+
+![Tasks](https://github.com/rusnasonov/vscode-hugo/blob/master/tasks.gif)
+
+
+## Commands in Command Pallete
 
 `version` - show local version of Hugo.
 
 `remote version` - show remote version of Hugo.
 
 `create content` - create content in `content/` directory.
-
-`run debug server` - run server for debugging site and open browser window.
 

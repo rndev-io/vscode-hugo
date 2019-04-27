@@ -3,28 +3,23 @@ import * as cp from 'child_process';
 import * as path from 'path';
 import * as fs from 'fs';
 
+import { TaskProvider } from './taskProvider';
 
-const opn = require('opn');
 const request = require('request');
 
-let hugo: Hugo;
-
-
 export function activate(context: vscode.ExtensionContext) {
-    let workspaceRoot = vscode.workspace.rootPath;
-    
+    const workspaceRoot = vscode.workspace.rootPath;
     if (!workspaceRoot) {
 		return;
     }
-    
-    hugo = new Hugo(workspaceRoot);
-
+    const hugo = new Hugo(workspaceRoot);
     if(!hugo.isHugoFolder()) {
         return;
     }
-
     console.log('"Hugo Helper" is active');
-    
+    const taskProvider = new TaskProvider();
+    vscode.tasks.registerTaskProvider('hugo', taskProvider);
+
     let version = vscode.commands.registerCommand('hugo.version', () => {
         hugo.version().then((v) => {
             vscode.window.showInformationMessage("Local version: " + v);
@@ -51,32 +46,18 @@ export function activate(context: vscode.ExtensionContext) {
 
     });
 
-    let runServer = vscode.commands.registerCommand('hugo.runServer', () => {
-        // todo run server from config
-        hugo.runServer().then((newHugo) => {
-            hugo=newHugo;
-            hugo.serverURL().then((url) => {
-                vscode.window.showInformationMessage(`Hugo server started at ${url}`);
-                opn(url);
-            }).catch(vscode.window.showErrorMessage);
-        });
-    });
-
     let remoteVersion = vscode.commands.registerCommand('hugo.remoteVersion', () => {
         hugo.remoteVersion().then((v) => {
             vscode.window.showInformationMessage("Remote version: " + v);
         });
     });
     
-    context.subscriptions.push(runServer);
     context.subscriptions.push(version);
     context.subscriptions.push(createContent);
     context.subscriptions.push(remoteVersion);
 }
 
-export function deactivate(): void {
-    hugo.stopServer();
-}
+export function deactivate(): void {}
 
 class Hugo {
     constructor(private projectRoot: string, private serverProcess?: cp.ChildProcess){
@@ -105,23 +86,6 @@ class Hugo {
                     resolve(path.basename(res.req.path));
                 }    
             });
-        });
-    }
-
-    public async serverURL(): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
-            if (!this.serverProcess) {
-                reject('Server not start');
-            } 
-            else {
-                this.serverProcess.stdout.on('data', (data) => {
-                    let urlRegex = /(https?:\/\/[^\s]+)/g;
-                    let matched = data.toString().match(urlRegex);
-                    if (matched) {
-                        resolve(matched[0]);
-                    }
-                });
-            }
         });
     }
 

@@ -5,7 +5,7 @@
     "version": "0.6.0",
     "publisher": "rusnasonov",
     "homepage": "https://github.com/rusnasonov/vscode-hugo/blob/master/README.md",
-    "icon": "icon.png",
+    "icon": "https://github.com/rusnasonov/vscode-hugo/raw/master/icon.png",
     "engines": {
         "vscode": "^1.20.0"
     },
@@ -17,13 +17,8 @@
         "Helper",
         "Static site generator"
     ],
-    "author": {
-        "name": "Ruslan Nasonov - rusnasonov.github.io/blog/"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/rusnasonov/vscode-hugo.git"
-    },
+    "author": "Ruslan Nasonov - rusnasonov.com",
+    "repository": "https://github.com/rusnasonov/vscode-hugo.git",
     "bugs": {
         "url": "https://github.com/rusnasonov/vscode-hugo/issues"
     },
@@ -42,12 +37,22 @@
                 "title": "Hugo: create content"
             },
             {
-                "command": "hugo.runServer",
-                "title": "Hugo: run debug server"
-            },
-            {
                 "command": "hugo.remoteVersion",
                 "title": "Hugo: remote version"
+            }
+        ],
+        "taskDefinitions": [
+            {
+                "type": "hugo",
+                "required": [
+                    "task"
+                ],
+                "properties": {
+                    "task": {
+                        "type": "string",
+                        "description": "The Hugo task"
+                    }
+                }
             }
         ]
     },
@@ -59,14 +64,15 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "@types/mocha": "^2.2.42",
-        "@types/node": "^7.0.69",
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^11.13.7",
         "tslint": "^5.11.0",
-        "typescript": "^2.9.2",
+        "typescript": "^3.4.5",
         "vscode": "^1.1.18"
     },
     "dependencies": {
-        "opn": "^5.3.0",
+        "opn": "^6.0.0",
         "request": "^2.87.0"
-    }
+    },
+    "license": "MIT"
 }

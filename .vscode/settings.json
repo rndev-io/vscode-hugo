@@ -6,5 +6,5 @@
     "search.exclude": {
         "out": true // set this to false to include "out" folder in search results
     },
-    "restructuredtext.workspaceRoot": "/Users/perseus/Projects/private/vscode-hugo"
+    "cSpell.enabled": false
 }
