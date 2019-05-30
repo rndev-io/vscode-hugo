@@ -8,6 +8,8 @@ Integrate [Hugo](http://gohugo.io) with [VSCode](https://code.visualstudio.com).
 
 [VSCode Task](https://code.visualstudio.com/Docs/editor/tasks#_processing-task-output-with-problem-matchers) for Hugo.
 
+![Tasks](https://github.com/rusnasonov/vscode-hugo/blob/master/tasks.gif)
+
 ### Build site
 
 Run `hugo` shell command. In VSCode run `Command Pallete` -> `Run tasks` -> `Build site`.
@@ -17,8 +19,6 @@ Or press <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>b</kbd> (<kbd>control</kbd
 ### Serve site
 
 Run `hugo server` shell comamnd. In VSCode run `Command Pallete` -> `Run tasks` -> `Serve site`.
-
-![Tasks](https://github.com/rusnasonov/vscode-hugo/blob/master/tasks.gif)
 
 
 ## Commands in Command Pallete
