@@ -5,7 +5,7 @@
     "version": "0.7.0",
     "publisher": "rusnasonov",
     "homepage": "https://github.com/rusnasonov/vscode-hugo/blob/master/README.md",
-    "icon": "https://github.com/rusnasonov/vscode-hugo/raw/master/icon.png",
+    "icon": "icon.png",
     "engines": {
         "vscode": "^1.20.0"
     },
