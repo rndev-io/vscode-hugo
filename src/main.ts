@@ -57,24 +57,29 @@ export function activate(context: vscode.ExtensionContext) {
             if (!archetypeName) {
                 return;
             }
-
-            vscode.window.showQuickPick(hugo.sections()).then((sectionName)=>{
-                if (!sectionName) {
-                    return ;
+            let fromFile = archetypeName.endsWith(".md")
+            let sectionName = fromFile ? archetypeName.substring(0, archetypeName.length - 3) : archetypeName
+            
+            vscode.window.showInputBox({placeHolder: `Create "${archetypeName}" in "${sectionName}"`}).then((fileName) => {
+                if (!fileName){
+                    return;
                 }
-
-                vscode.window.showInputBox({placeHolder: `Create "${archetypeName}" in "${sectionName}"`}).then((fileName) => {
-                    if (!fileName){
-                        return;
-                    }
-                    
-                    let fullFileName = path.join(sectionName, fileName.replace(/ /g, '-'));
-
+                
+                let fullFileName = path.join(sectionName, fileName.replace(/ /g, '-'));
+                if (fromFile) {
+                    if (!fullFileName.endsWith(".md")) 
+                        fullFileName += ".md"
+                    hugo.new(fullFileName).then((path) => {
+                        let indexFile = 'file://' + path;
+                        vscode.window.showTextDocument(vscode.Uri.parse(indexFile));
+                    });
+                }
+                else {
                     hugo.new(fullFileName, ["--kind", archetypeName]).then((path) => {
                         let indexFile = 'file://' + path + '/index.md';
                         vscode.window.showTextDocument(vscode.Uri.parse(indexFile));
                     });
-                });
+                }
             });
         });
     });
@@ -146,7 +151,7 @@ class Hugo {
 
     public archetypes(): string[]{
         let archetypes = path.join(this.projectRoot, 'archetypes/');
-        return walk(archetypes, false).map((item) => item.replace(archetypes, ''));
+        return walk(archetypes, false, false).map((item) => item.replace(archetypes, ''));
     }
 
     private async spawn(command: string = '', args: string[] = []): Promise<{ stdout: string; stderr: string; }> {
@@ -213,7 +218,7 @@ function walk(dirPath: string, recursive = true, isDirectory = true): string[]{
 
     for (var p of fs.readdirSync(dirPath)) {
         let newPath = path.join(dirPath, p);
-        if (fs.lstatSync(newPath).isDirectory()) {
+        if (!isDirectory || fs.lstatSync(newPath).isDirectory()) {
             result.push(newPath);
             if (recursive) {
                 for(var d of walk(newPath)) {
