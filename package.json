@@ -42,7 +42,7 @@
             },
             {
                 "command": "hugo.fromarchetype",
-                "title": "Hugo: create content from archetype directory"
+                "title": "Hugo: create content from archetype"
             }
         ],
         "taskDefinitions": [
