@@ -29,5 +29,5 @@ Run `hugo server` shell comamnd. In VSCode run `Command Pallete` -> `Run tasks` 
 
 `create content` - create content in `content/` directory.
 
-`create content from archetype directory` - create content in `content/` directory from an directory archetype (https://gohugo.io/content-management/archetypes/#directory-based-archetypes)
+`create content from archetype` - create content in `content/` directory from an archetype (https://gohugo.io/content-management/archetypes/)
 
