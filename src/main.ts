@@ -52,9 +52,42 @@ export function activate(context: vscode.ExtensionContext) {
         });
     });
     
+    let fromArchetype = vscode.commands.registerCommand('hugo.fromarchetype', () => {
+        vscode.window.showQuickPick(hugo.archetypes()).then((archetypeName) => {
+            if (!archetypeName) {
+                return;
+            }
+            let fromFile = archetypeName.endsWith(".md")
+            let sectionName = fromFile ? archetypeName.substring(0, archetypeName.length - 3) : archetypeName
+            
+            vscode.window.showInputBox({placeHolder: `Create "${archetypeName}" in "${sectionName}"`}).then((fileName) => {
+                if (!fileName){
+                    return;
+                }
+                
+                let fullFileName = path.join(sectionName, fileName.replace(/ /g, '-'));
+                if (fromFile) {
+                    if (!fullFileName.endsWith(".md")) 
+                        fullFileName += ".md"
+                    hugo.new(fullFileName).then((path) => {
+                        let indexFile = 'file://' + path;
+                        vscode.window.showTextDocument(vscode.Uri.parse(indexFile));
+                    });
+                }
+                else {
+                    hugo.new(fullFileName, ["--kind", archetypeName]).then((path) => {
+                        let indexFile = 'file://' + path + '/index.md';
+                        vscode.window.showTextDocument(vscode.Uri.parse(indexFile));
+                    });
+                }
+            });
+        });
+    });
+
     context.subscriptions.push(version);
     context.subscriptions.push(createContent);
     context.subscriptions.push(remoteVersion);
+    context.subscriptions.push(fromArchetype);
 }
 
 export function deactivate(): void {}
@@ -116,6 +149,11 @@ class Hugo {
         return walk(contentFolder).map((item) => item.replace(contentFolder, ''));
     }
 
+    public archetypes(): string[]{
+        let archetypes = path.join(this.projectRoot, 'archetypes/');
+        return walk(archetypes, false, false).map((item) => item.replace(archetypes, ''));
+    }
+
     private async spawn(command: string = '', args: string[] = []): Promise<{ stdout: string; stderr: string; }> {
         let options: cp.ExecOptions = {};
         if (this.projectRoot != '') {
@@ -175,15 +213,17 @@ function exists(file: string): Promise<boolean> {
 	});
 }
 
-function walk(dirPath: string): string[]{
+function walk(dirPath: string, recursive = true, isDirectory = true): string[]{
     let result: string[] = [];
 
     for (var p of fs.readdirSync(dirPath)) {
         let newPath = path.join(dirPath, p);
-        if (fs.lstatSync(newPath).isDirectory()) {
+        if (!isDirectory || fs.lstatSync(newPath).isDirectory()) {
             result.push(newPath);
-            for(var d of walk(newPath)) {
-                result.push(d);
+            if (recursive) {
+                for(var d of walk(newPath)) {
+                    result.push(d);
+                }
             }
         }
     }

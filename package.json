@@ -39,6 +39,10 @@
             {
                 "command": "hugo.remoteVersion",
                 "title": "Hugo: remote version"
+            },
+            {
+                "command": "hugo.fromarchetype",
+                "title": "Hugo: create content from archetype"
             }
         ],
         "taskDefinitions": [
