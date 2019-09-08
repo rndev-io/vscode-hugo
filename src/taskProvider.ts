@@ -4,7 +4,8 @@ export class TaskProvider implements vscode.TaskProvider {
     provideTasks(): vscode.ProviderResult<vscode.Task[]> {
         return [
             this.build(),
-            this.serve()
+            this.serve(),
+            this.serve_draft()
         ]
     }
 
@@ -26,6 +27,19 @@ export class TaskProvider implements vscode.TaskProvider {
              'Serve site',
             'hugo',
             new vscode.ShellExecution('hugo server'),
+            []
+        )
+        serve.group = vscode.TaskGroup.Build;
+        serve.isBackground = true;
+        return serve;
+    }
+
+    private serve_draft(): vscode.Task {
+        let serve = new vscode.Task(
+            {type: 'hugo', task: 'server draft'},
+            'Serve draft site',
+            'hugo',
+            new vscode.ShellExecution('hugo server --buildDrafts'),
             []
         )
         serve.group = vscode.TaskGroup.Build;
