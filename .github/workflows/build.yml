@@ -41,3 +41,10 @@ jobs:
     - name: build package
       run: |
         ./node_modules/vsce/out/vsce package
+    - uses: actions/upload-artifact@master
+      env:
+        package: ls *.vsix
+      with:
+        name: ${PACKAGE}
+        path: ${PACKAGE}
+      
