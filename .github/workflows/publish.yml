@@ -29,7 +29,7 @@ jobs:
         npm test
     - name: publish
       run: |
-        git config --global user.email "${{ github.repository.owner.email }}"
+        git config --global user.email "rus.nasonov@gmail.com"
         git config --global user.name "Ruslan Nasonov"
         ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
    
