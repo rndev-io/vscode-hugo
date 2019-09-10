@@ -41,8 +41,9 @@ jobs:
     - name: build package
       run: |
         ./node_modules/vsce/out/vsce package
-      env:
-        package: "Hello"
+    - name: package version
+      run: echo "Hello"
+      id: version
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
