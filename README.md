@@ -1,6 +1,6 @@
 # vscode-hugo
 
-![downloads](https://img.shields.io/vscode-marketplace/d/rusnasonov.vscode-hugo.svg) ![build](https://github.com/rusnasonov/vscode-hugo/workflows/Build/badge.svg)
+![downloads](https://img.shields.io/vscode-marketplace/d/rusnasonov.vscode-hugo.svg) ![build](https://git.io/JeqHA)
 
 Integrate [Hugo](http://gohugo.io) with [VSCode](https://code.visualstudio.com).
 
