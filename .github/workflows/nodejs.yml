@@ -1,0 +1,40 @@
+name: Node CI
+
+on:
+  pull_request:
+    branches:
+    - master
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-16.04, ubuntu-18.04]
+        node: [10.x]
+        
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - name: npm install
+      run: |
+        npm install
+    - name: compile
+      run: |
+        npm run compile
+    - name: test
+      run: |
+        export DISPLAY=':99.0'
+        /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+        npm test
+    - name: build package
+      run: |
+        ./node_modules/vsce/out/vsce package
