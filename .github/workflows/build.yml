@@ -53,6 +53,11 @@ jobs:
       if: github.ref == 'master' && job.status == 'success'
       run: |
         echo "123"
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
 
 
       
