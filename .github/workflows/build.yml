@@ -30,6 +30,9 @@ jobs:
     - name: compile
       run: |
         npm run compile
+    - name: lint
+      run: |
+        npm run lint
     - name: test
       run: |
         export DISPLAY=':99.0'
