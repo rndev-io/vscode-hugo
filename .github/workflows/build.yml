@@ -45,7 +45,9 @@ jobs:
       id: build_package
     - uses: actions/upload-artifact@master
       with:
-        name: ${{ join('vscode-hugo-', steps.build_package.version, '-', github.sha, '.vsix') }}
-        path: ${{ join('vscode-hugo-', steps.build_package.version, '.vsix') }}
+        # name: ${{ join('vscode-hugo-', steps.build_package.version, '-', github.sha, '.vsix') }}
+        # path: ${{ join('vscode-hugo-', steps.build_package.version, '.vsix') }}
+        name: ${{ format('vscode-hugo-{0}-{1}.vsix', steps.build_package.version, github.sha) }}
+        path: ${{ format('vscode-hugo-{0}.vsix', steps.build_package.version) }}
 
       
