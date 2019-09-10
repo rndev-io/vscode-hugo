@@ -35,6 +35,8 @@ jobs:
         ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
         git add -A
         git push --tags
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    
 
 
