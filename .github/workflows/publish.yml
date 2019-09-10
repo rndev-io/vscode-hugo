@@ -31,7 +31,7 @@ jobs:
       run: |
         git config --global user.email "rus.nasonov@gmail.com"
         git config --global user.name "Ruslan Nasonov"
-        git -c http.extraheader="AUTHORIZATION: basic ${GITHUB_TOKEN}" fetch --tags --prune --progress --no-recurse-submodules origin
+        git -c http.extraheader="AUTHORIZATION: basic $GITHUB_TOKEN" fetch --tags --prune --progress --no-recurse-submodules origin
         ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
         git add -A
         git push --tags
