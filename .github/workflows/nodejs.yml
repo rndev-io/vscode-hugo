@@ -37,4 +37,4 @@ jobs:
         npm test
     - name: build package
       run: |
-        vsce package
+        ./node_modules/vsce/out/vsce package
