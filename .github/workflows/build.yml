@@ -47,7 +47,7 @@ jobs:
       with:
         # name: ${{ join('vscode-hugo-', steps.build_package.version, '-', github.sha, '.vsix') }}
         # path: ${{ join('vscode-hugo-', steps.build_package.version, '.vsix') }}
-        name: ${{ format('vscode-hugo-{0}-{1}.vsix', steps.build_package.version, github.sha) }}
-        path: ${{ format('vscode-hugo-{0}.vsix', steps.build_package.version) }}
+        name: ${{ format('vscode-hugo-{0}-{1}.vsix', steps.build_package.outputs.version, github.sha) }}
+        path: ${{ format('vscode-hugo-{0}.vsix', steps.build_package.outputs.version) }}
 
       
