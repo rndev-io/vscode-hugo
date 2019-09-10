@@ -9,20 +9,33 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
-
+        os: [ubuntu-16.04, ubuntu-18.04]
+        node: [10.x]
+    
+    on:
+      pull_request:
+        branches:
+        - master
+        
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+        node-version: ${{ matrix.node }}
+    - name: setup xvbf
       run: |
         export DISPLAY=':99.0'
         /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+    - name: npm install, compile, and test
+      run: |
         npm install
+    - name: compile
+      run: |
         npm run compile
+    - name: test
+      run: |
         npm test
-      env:
-        CI: true
+    - name: build package
+      run: |
+        vsce package
