@@ -45,6 +45,6 @@ jobs:
       env:
         package: ls *.vsix
       with:
-        name: ${PACKAGE}
-        path: ${PACKAGE}
+        name: $PACKAGE
+        path: $PACKAGE
       
