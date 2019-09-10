@@ -42,7 +42,7 @@ jobs:
       run: |
         ./node_modules/vsce/out/vsce package
     - name: package version
-      run: echo "Hello"
+      run: echo "##[set-output name=result;]\"Hello world\""
       id: version
       env:
         PACKAGE: "Hello"
