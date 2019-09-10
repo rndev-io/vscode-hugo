@@ -1,6 +1,12 @@
 name: Node CI
 
-on: [push]
+on:
+  pull_request:
+    branches:
+    - master
+  push:
+    branches:
+    - master
 
 jobs:
   build:
@@ -11,11 +17,6 @@ jobs:
       matrix:
         os: [ubuntu-16.04, ubuntu-18.04]
         node: [10.x]
-    
-    on:
-      pull_request:
-        branches:
-        - master
         
     steps:
     - uses: actions/checkout@v1
