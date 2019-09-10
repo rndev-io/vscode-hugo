@@ -44,6 +44,8 @@ jobs:
     - name: package version
       run: echo "Hello"
       id: version
+      env:
+        PACKAGE: "Hello"
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
