@@ -56,7 +56,7 @@ jobs:
       run: echo "$JOB_CONTEXT"
     - name: Dump steps context
       env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
+        STEPS_CONTEXT: ${{ toJson(steps.version.outputs) }}
       run: echo "$STEPS_CONTEXT"
     - name: Dump runner context
       env:
