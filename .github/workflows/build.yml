@@ -19,8 +19,9 @@ jobs:
         node: [10.x]
         
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node }}
+    - name: checkout
+      uses: actions/checkout@v1
+    - name: use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node }}
@@ -41,3 +42,17 @@ jobs:
     - name: build package
       run: |
         ./node_modules/vsce/out/vsce package
+        echo "##[set-output name=version;]$(npm run package-version --silent)"
+      id: build_package
+    - name: save vsix
+      uses: actions/upload-artifact@master
+      with:
+        name: ${{ format('vscode-hugo-{0}-{1}.vsix', steps.build_package.outputs.version, github.sha) }}
+        path: ${{ format('vscode-hugo-{0}.vsix', steps.build_package.outputs.version) }}
+    - name: publish
+      if: github.ref == 'master' && job.status == 'success'
+      run: |
+        echo "123"
+
+
+      

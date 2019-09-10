@@ -16,7 +16,6 @@ export function activate(context: vscode.ExtensionContext) {
     if (!hugo.isHugoFolder()) {
         return;
     }
-    console.log("\"Hugo Helper\" is active");
     const taskProvider = new TaskProvider();
     vscode.tasks.registerTaskProvider("hugo", taskProvider);
 

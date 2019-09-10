@@ -66,7 +66,8 @@
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test",
-        "lint": "tslint --project ./"
+        "lint": "tslint --project ./",
+        "package-version": "echo $npm_package_version"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.6",
