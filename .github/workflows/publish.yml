@@ -23,7 +23,7 @@ jobs:
         npm run compile
         npm run lint
     - name: test
-      if: github.branch == ''
+      if: github.branch == 'qwerty'
       run: |
         export DISPLAY=':99.0'
         /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
@@ -41,8 +41,9 @@ jobs:
         git branch
         git add -A
         git commit -m "publish"
-        GIT_CURL_VERBOSE=1 GIT_TRACE=1 git push -u origin master -v
-        git push origin master -v --tags
+        git status
+        GIT_CURL_VERBOSE=1 GIT_TRACE=1 git push
+        git push --tags
 
 
 
