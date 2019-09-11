@@ -23,11 +23,13 @@ jobs:
         npm run compile
         npm run lint
     - name: test
+      if: github.branch == ''
       run: |
         export DISPLAY=':99.0'
         /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
         npm test
-      if: github.branch == ''
+    - name: Reattach HEAD
+      run: git checkout "$(echo ${{ github.ref }} | sed -E 's|refs/[a-zA-Z]+/||')"
     - name: publish
       run: |
         git config --global user.email "rus.nasonov@gmail.com"
