@@ -34,7 +34,8 @@ jobs:
         git config --global --add "http.extraheader" "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
         ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
         git add -A
-        git push --tags
+        git push -v
+        git push -v --tags
 
 
 
