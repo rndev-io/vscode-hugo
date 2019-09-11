@@ -34,6 +34,8 @@ jobs:
         git config --global --add "http.extraheader" "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
         #./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
         echo "q" > text.txt
+        git status
+        git branch
         git add -A
         git commit -m "publish"
         git push -u origin master -v
