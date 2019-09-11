@@ -31,6 +31,7 @@ jobs:
     - name: publish
       run: |
         #./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
+        git checkout master
         echo "q" > text.txt
         git add .
         git status
