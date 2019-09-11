@@ -31,9 +31,10 @@ jobs:
       run: |
         git config --global user.email "rus.nasonov@gmail.com"
         git config --global user.name "Ruslan Nasonov"
+        git config --global --add "http.extraheader" "AUTHORIZATION: basic ${{ secrets.GITHUB_TOKEN }}"
         ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
         git add -A
-        git -c http.extraheader="AUTHORIZATION: basic ${{ secrets.GITHUB_TOKEN }}" push --tags
+        git push --tags
 
 
 
