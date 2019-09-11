@@ -37,8 +37,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUSH_BRANCH: 'master'
-      run: git push --tags
-
 
 
       
