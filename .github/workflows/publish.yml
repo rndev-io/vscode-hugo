@@ -32,6 +32,8 @@ jobs:
       run: |
         #./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
         echo "q" > text.txt
+        git add .
+        git status
     - name: push
       uses: elstudio/actions-js-build/commit@v2
       env:
