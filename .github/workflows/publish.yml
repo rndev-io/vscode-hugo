@@ -32,10 +32,11 @@ jobs:
         git config --global user.email "rus.nasonov@gmail.com"
         git config --global user.name "Ruslan Nasonov"
         git config --global --add "http.extraheader" "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
-        ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
+        #./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
+        echo "q" > text.txt
         git add -A
-        git push -v
-        git push -v --tags
+        git push origin master -v
+        git push origin master -v --tags
 
 
 
