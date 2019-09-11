@@ -35,7 +35,8 @@ jobs:
         #./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
         echo "q" > text.txt
         git add -A
-        git push origin master -v
+        git commit -m "publish"
+        git push -u origin master -v
         git push origin master -v --tags
 
 
