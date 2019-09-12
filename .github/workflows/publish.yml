@@ -31,6 +31,7 @@ jobs:
       run: |
         git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
         git config --global user.name "$GITHUB_ACTOR"
+        git checkout master
         ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
     - name: push
       uses: github-actions-x/commit@master

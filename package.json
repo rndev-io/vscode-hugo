@@ -2,7 +2,7 @@
     "name": "vscode-hugo",
     "displayName": "Hugo Helper",
     "description": "Helper for Hugo static site generator",
-    "version": "0.18.0",
+    "version": "0.19.0",
     "publisher": "rusnasonov",
     "homepage": "https://github.com/rusnasonov/vscode-hugo/blob/master/README.md",
     "icon": "icon.png",
