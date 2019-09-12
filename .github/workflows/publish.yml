@@ -34,6 +34,7 @@ jobs:
     - name: push
       uses: rusnasonov/actions/commit@master
       with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         push_branch: 'master'
         commit_message: 'test'
 
