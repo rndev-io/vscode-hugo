@@ -23,23 +23,19 @@ jobs:
         npm run compile
         npm run lint
     - name: test
-      if: github.branch == 'qwerty'
       run: |
         export DISPLAY=':99.0'
         /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
         npm test
     - name: publish
       run: |
-        #./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
-        git checkout master
-        echo "q" > text.txt
-        git add .
-        git status
+        # ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
+        echo "q" > test.txt
     - name: push
-      uses: elstudio/actions-js-build/commit@v2
+      uses: rusnasonov/actions/commit@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUSH_BRANCH: 'master'
+        COMMIT_MESSAGE: 'test'
 
 
       
