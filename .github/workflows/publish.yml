@@ -32,7 +32,7 @@ jobs:
         # ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
         echo "q" > test.txt
     - name: push
-      uses: rusnasonov/actions/commit@v1
+      uses: rusnasonov/actions/commit@master
       env:
         PUSH_BRANCH: 'master'
         COMMIT_MESSAGE: 'test'
