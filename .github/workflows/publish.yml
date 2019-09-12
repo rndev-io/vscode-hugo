@@ -29,9 +29,11 @@ jobs:
         npm test
     - name: publish
       run: |
+        git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git config --global user.name "$GITHUB_ACTOR"
         ./node_modules/vsce/out/vsce publish -p ${{ secrets.VSCE_TOKEN }} minor
     - name: push
-      uses: rusnasonov/actions/commit@master
+      uses: github-actions-x/commit@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         push_branch: 'master'
