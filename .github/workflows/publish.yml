@@ -33,9 +33,9 @@ jobs:
         echo "q" > test.txt
     - name: push
       uses: rusnasonov/actions/commit@master
-      env:
-        PUSH_BRANCH: 'master'
-        COMMIT_MESSAGE: 'test'
+      with:
+        push_branch: 'master'
+        commit_message: 'test'
 
 
       
