@@ -38,7 +38,7 @@ jobs:
         npm test
     - name: build package
       run: |
-        ./node_modules/vsce/out/vsce package --yarn
+        ./node_modules/vsce/out/vsce package
         echo "##[set-output name=version;]$(npm run package-version --silent)"
       id: build_package
     - name: save vsix
