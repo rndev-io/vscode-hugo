@@ -1,11 +1,13 @@
 import * as vscode from "vscode";
+import * as axios from "axios";
+
 import * as cp from "child_process";
 import * as path from "path";
 import * as fs from "fs";
 
+
 import { TaskProvider } from "./taskProvider";
 
-const request = require("request");
 
 export function activate(context: vscode.ExtensionContext) {
     const workspaceRoot = vscode.workspace.rootPath;
@@ -110,15 +112,8 @@ class Hugo {
     }
 
     public async remoteVersion(): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
-            request("https://github.com/gohugoio/hugo/releases/latest", (err: any, res: any, body: string) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(path.basename(res.req.path));
-                }
-            });
-        });
+        let response = await axios.default.get("https://github.com/gohugoio/hugo/releases/latest");
+        return path.basename(response.request.path);
     }
 
     public stopServer(): Hugo {
