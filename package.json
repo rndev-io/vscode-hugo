@@ -6,6 +6,7 @@
     "publisher": "rusnasonov",
     "homepage": "https://github.com/rusnasonov/vscode-hugo/blob/master/README.md",
     "icon": "icon.png",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.43.0"
     },
@@ -79,6 +80,5 @@
     },
     "dependencies": {
         "axios": "^0.19.2"
-    },
-    "license": "MIT"
+    }    
 }
