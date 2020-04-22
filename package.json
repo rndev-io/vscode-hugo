@@ -6,7 +6,7 @@
     "publisher": "rusnasonov",
     "homepage": "https://github.com/rusnasonov/vscode-hugo/blob/master/README.md",
     "icon": "icon.png",
-    "license": "MIT",
+    "license": "SEE LICENSE IN LICENSE",
     "engines": {
         "vscode": "^1.43.0"
     },
