@@ -18,7 +18,8 @@ Or press <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>b</kbd> (<kbd>control</kbd
 
 ### Serve site
 
-Two possibility :
+Two possibilities:
+
 * Run `hugo server` shell command to start like final site.
  In VSCode run `Command Pallete` -> `Run tasks` -> `Serve site`.
 * Run `hugo server --buildDrafts` shell command to start site with draft page.
