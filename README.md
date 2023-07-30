@@ -2,7 +2,7 @@
 
 ![downloads](https://img.shields.io/vscode-marketplace/d/rusnasonov.vscode-hugo.svg) ![build](https://git.io/JeqHA)
 
-Integrate [Hugo](http://gohugo.io) with [VSCode](https://code.visualstudio.com).
+Integrate [Hugo](https://gohugo.io) with [VSCode](https://code.visualstudio.com).
 
 ## Tasks
 
@@ -12,7 +12,7 @@ Integrate [Hugo](http://gohugo.io) with [VSCode](https://code.visualstudio.com).
 
 ### Build site
 
-Run `hugo` shell command. In VSCode run `Command Pallete` -> `Run tasks` -> `Build site`.
+Run `hugo` shell command. In VSCode run `Command Palette` -> `Run tasks` -> `Build site`.
 
 Or press <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>b</kbd> (<kbd>control</kbd> + <kbd>shift</kbd> + <kbd>b</kbd> for Windows and Linux) for select task in Build menu. If you setup `Default build task` command will be run without showing menu.
 
@@ -21,12 +21,12 @@ Or press <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>b</kbd> (<kbd>control</kbd
 Two possibilities:
 
 * Run `hugo server` shell command to start like final site.
- In VSCode run `Command Pallete` -> `Run tasks` -> `Serve site`.
+ In VSCode run `Command Palette` -> `Run tasks` -> `Serve site`.
 * Run `hugo server --buildDrafts` shell command to start site with draft page.
- In VSCode run `Command Pallete` -> `Run tasks` -> `Serve draft site`.
+ In VSCode run `Command Palette` -> `Run tasks` -> `Serve draft site`.
 
 
-## Commands in Command Pallete
+## Commands in Command Palette
 
 `version` - show local version of Hugo.
 
@@ -34,5 +34,4 @@ Two possibilities:
 
 `create content` - create content in `content/` directory.
 
-`create content from archetype` - create content in `content/` directory from an archetype (https://gohugo.io/content-management/archetypes/)
-
+`create content from archetype` - create content in `content/` directory from an [archetype](https://gohugo.io/content-management/archetypes/)
